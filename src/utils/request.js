@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
-// import store from '@/store'
-// import { getToken } from '@/utils/auth'
+import store from '@/store'
+import { getToken } from '@/utils/auth'
 
 // 1.创建axios实例
 const service = axios.create({
@@ -14,24 +14,23 @@ const service = axios.create({
 })
 
 // 2.请求拦截器request interceptor
-// service.interceptors.request.use(
-//     config => {
-//         // 发请求前做的一些处理，数据转化，配置请求头，设置token,设置loading等，根据需求去添加
-//         // 注意使用token的时候需要引入cookie方法或者用本地localStorage等方法，推荐js-cookie
-//         if (store.getters.token) {
-//             // config.params = {'token': token}    // 如果要求携带在参数中
-//             // config.headers.token = token;       // 如果要求携带在请求头中
-//             // bearer：w3c规范
-//             config.headers['Authorization'] = 'Bearer ' + getToken()
-//         }
-//         return config
-//     },
-//     error => {
-//         // do something with request error
-//         // console.log(error) // for debug
-//         return Promise.reject(error)
-//     }
-// )
+service.interceptors.request.use(config => {
+        // 发请求前做的一些处理，数据转化，配置请求头，设置token,设置loading等，根据需求去添加
+        // 注意使用token的时候需要引入cookie方法或者用本地localStorage等方法，推荐js-cookie
+        if (store.getters.token) {
+            // config.params = {'token': token}    // 如果要求携带在参数中
+            // config.headers.token = token;       // 如果要求携带在请求头中
+            // bearer：w3c规范
+            config.headers['Authorization'] = 'Bearer ' + getToken()
+        }
+        return config
+    },
+    error => {
+        // do something with request error
+        // console.log(error) // for debug
+        return Promise.reject(error)
+    }
+)
 
 // 设置cross跨域 并设置访问权限 允许跨域携带cookie信息,使用JWT可关闭
 service.defaults.withCredentials = false
@@ -65,8 +64,7 @@ service.interceptors.response.use(
         } else {
             return res
         }
-    },
-    error => {
+    }, error => {
         /** *** 接收到异常响应的处理开始 *****/
         // console.log('err' + error) // for debug
         Message({
