@@ -18,6 +18,7 @@ export function login(data) {
 }
 // 获取用户信息
 export function getUserInfo() {
+    debugger
     return request({
         url: '/ums/user/info',
         method: 'get'
