@@ -1,7 +1,6 @@
-// import { getUserInfo, login, logout } from "@/api/auth/auth";
-// import { getToken, setToken, removeToken } from "@/utils/auth";
-import { getUserInfo, login } from "@/api/auth/auth";
+import { getUserInfo, login, logout } from "@/api/auth/auth";
 import { getToken, setToken, removeToken } from "@/utils/auth";
+
 const state = {
     token: getToken(), // token
     user: "", // 用户对象
@@ -36,7 +35,6 @@ const actions = {
     getInfo({ commit }) {
         return new Promise((resolve, reject) => {
             getUserInfo().then((response) => {
-                debugger
                 const { data } = response;
                 if (!data) {
                     commit("SET_TOKEN_STATE", "");
@@ -52,22 +50,21 @@ const actions = {
             });
         });
     },
-    // // 注销
-    // logout({ commit, state }) {
-    //     return new Promise((resolve, reject) => {
-    //         logout(state.token)
-    //             .then((response) => {
-    //                 console.log(response);
-    //                 commit("SET_TOKEN_STATE", "");
-    //                 commit("SET_USER_STATE", "");
-    //                 removeToken();
-    //                 resolve();
-    //             })
-    //             .catch((error) => {
-    //                 reject(error);
-    //             });
-    //     });
-    // },
+    // 注销
+    logout({ commit }) {
+        return new Promise((resolve, reject) => {
+            logout().then((response) => {
+                console.log(response);
+                commit("SET_TOKEN_STATE", "");
+                commit("SET_USER_STATE", "");
+                removeToken();
+                resolve();
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    },
 };
 
 export default {

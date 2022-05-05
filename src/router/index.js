@@ -9,6 +9,11 @@ const routes = [
   { path: '/404', name: '404', component: ()=> import('@/views/error/404'), meta: {title: '页面不存在'} },
   { path: '*', redirect: '/404', hidden: true},
 ]
+//重写路由跳转方法，增加异常捕捉 .catch((err) => err)
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err);
+};
 
 const router = new VueRouter({
   routes

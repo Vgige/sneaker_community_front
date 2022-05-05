@@ -7,7 +7,7 @@
         <tip-card />
 
         <!--资源推介-->
-        <PromotionCard />
+        <promotion-card />
     </section>
 </template>
 
