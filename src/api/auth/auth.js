@@ -9,11 +9,11 @@ export function userRegister(userDTO) {
     })
 }
 // 前台用户登录
-export function login(data) {
+export function login(user) {
     return request({
         url: '/ums/user/login',
         method: 'post',
-        data
+        data: user
     })
 }
 // 获取用户信息

@@ -60,7 +60,7 @@
                                 <div class="">
                                     <p class="ellipsis is-ellipsis-1">
                                         <el-tooltip class="item" effect="dark" :content="item.title" placement="top">
-                                            <router-link :to="{name:'post-detail',params:{id:item.id}}">
+                                            <router-link :to="{name: 'post-detail',params:{id:item.id}}">
                                                 <span class="is-size-6">{{ item.title }}</span>
                                             </router-link>
                                         </el-tooltip>
@@ -69,7 +69,7 @@
                                 <nav class="level has-text-grey is-mobile  is-size-7 mt-2">
                                     <div class="level-left">
                                         <div class="level-left">
-                                            <router-link class="level-item" :to="{ path: `/member/${item.username}/home` }">
+                                            <router-link class="level-item" :to="{ path: '/member/${item.username}/home' }">
                                                 {{ item.alias }}
                                             </router-link>
 
