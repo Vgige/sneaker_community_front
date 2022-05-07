@@ -52,10 +52,11 @@
                             <span class="tag">编辑</span>
                         </router-link>
                         <a class="level-item">
-              <span
-                  class="tag"
-                  @click="handleDelete(topic.id)"
-              >删除</span>
+                            <span
+                              class="tag"
+                              @click="handleDelete(topic.id)"
+                            >删除
+                            </span>
                         </a>
                     </div>
                 </nav>
@@ -129,13 +130,16 @@ export default {
             })
         },
         handleDelete(id) {
-            deleteTopic(id).then(value => {
-                const { code, message } = value
-                alert(message)
+            deleteTopic(id).then(res => {
+                const { code } = res;
                 if (code === 200) {
+                    this.$buefy.toast.open({
+                        message: `删除成功！`,
+                        type: 'is-success'
+                    })
                     setTimeout(() => {
                         this.$router.push({ path: '/' })
-                    }, 500)
+                    }, 800)
                 }
             })
         }

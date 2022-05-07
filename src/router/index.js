@@ -9,10 +9,8 @@ const routes = [
   { path: '/404', name: '404', component: ()=> import('@/views/error/404'), meta: {title: '页面不存在'} },
   { path: '*', redirect: '/404', hidden: true},
   { path: "/post/create", name: "post-create", component: () => import("@/views/post/Create"), meta: { title: "信息发布", requireAuth: true}},
-  { path: '/post/:id', name: 'post-detail', component: () => import('@/views/post/Detail'), meta: {title: '详情' }
-  // 编辑
-  // { path: '/topic/edit/:id', name: 'topic-edit', component: () => import('@/views/post/Edit'), meta: {title: '编辑', requireAuth: true}
-  },
+  { path: '/post/:id', name: 'post-detail', component: () => import('@/views/post/Detail'), meta: {title: '详情' }},
+  { path: '/topic/edit/:id', name: 'topic-edit', component: () => import('@/views/post/Edit'), meta: {title: '编辑', requireAuth: true}}
 ]
 //重写路由跳转方法，增加异常捕捉 .catch((err) => err)
 const originalPush = VueRouter.prototype.push;

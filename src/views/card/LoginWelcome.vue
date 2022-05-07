@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-card class="box-card" shadow="never">
-            <div slot="header">
+            <div slot="header" class="has-text-centered">
                 <span>💐 发帖</span>
             </div>
             <div v-if="token != null && token !== ''" class="has-text-centered">

@@ -8,6 +8,9 @@
 
         <!--资源推介-->
         <promotion-card />
+
+        <!--赞赏作者-->
+        <praise-card />
     </section>
 </template>
 
@@ -16,10 +19,11 @@
 import LoginWelcome from "@/views/card/LoginWelcome";
 import PromotionCard from "@/views/card/Promotion";
 import TipCard from "@/views/card/Tip";
+import PraiseCard from "@/views/card/Praise";
 export default {
     name: 'CardBar',
     // eslint-disable-next-line vue/no-unused-components
-    components: {LoginWelcome, PromotionCard, TipCard},
+    components: {LoginWelcome, PromotionCard, TipCard, PraiseCard},
     data() {
         return{
         }
