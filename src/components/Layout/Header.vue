@@ -141,7 +141,10 @@ export default {
     methods: {
         async logout() {
             this.$store.dispatch('user/logout').then(() => {
-                this.$message.info('退出登录成功!')
+                this.$buefy.toast.open({
+                    message: `退出登录成功！`,
+                    type: 'is-success'
+                })
                 setTimeout(() => {
                     this.$router.push({ path: this.redirect || '/' })
                 }, 500)

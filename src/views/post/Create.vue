@@ -115,19 +115,17 @@ export default {
                         this.contentEditor.getValue() == null ||
                         this.contentEditor.getValue() === ''
                     ) {
-                        this.$message({
-                            message: "话题内容不可为空!",
-                            type: "error",
-                            duration: 2000,
-                        });
+                        this.$buefy.toast.open({
+                            message: `话题内容不可为空！`,
+                            type: 'is-warning'
+                        })
                         return false
                     }
                     if (this.ruleForm.tags == null || this.ruleForm.tags.length === 0) {
-                        this.$message({
-                            message: "标签不可以为空!",
-                            type: "error",
-                            duration: 2000,
-                        });
+                        this.$buefy.toast.open({
+                            message: `标签不可以为空！`,
+                            type: 'is-warning'
+                        })
                         return false
                     }
                     this.ruleForm.content = this.contentEditor.getValue()

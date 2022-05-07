@@ -28,11 +28,9 @@ router.beforeEach(async (to, from, next) => {
             await store.dispatch('user/getInfo')
             next()
         }
-    } else if (!to.meta.requireAuth)
-    {
+    } else if (!to.meta.requireAuth) {
         next()
-    }
-    else {
+    } else {
         next('/login')
     }
 })

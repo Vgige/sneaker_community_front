@@ -84,11 +84,10 @@ export default {
                 if (valid) {
                     this.loading = true;
                     this.$store.dispatch("user/login", this.ruleForm).then(() => {
-                        this.$message({
-                            message: "登录成功!",
-                            type: "success",
-                            duration: 2000,
-                        });
+                        this.$buefy.toast.open({
+                            message: `登录成功！`,
+                            type: 'is-success'
+                        })
                         this.loading = false;
                         this.$router.push({ path: this.redirect || "/" });
                     }).catch(() => {

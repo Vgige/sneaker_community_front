@@ -1,7 +1,7 @@
 <template>
     <el-card class="" shadow="never">
         <div slot="header" class="has-text-centered">
-            <span class="has-text-weight-bold">🧐随便看看</span>
+            <span class="has-text-weight-bold">🧐 随便看看</span>
         </div>
         <div>
             <p v-for="(item,index) in recommend" :key="index" :title="item.title" class="block ellipsis is-ellipsis-1">

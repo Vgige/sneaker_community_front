@@ -10,7 +10,7 @@ import ElementUI from "element-ui"
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/app.css'
 
-// import format from 'date-fns/format'
+import format from 'date-fns/format'
 import '@/permission'
 import relativeTime from 'dayjs/plugin/relativeTime';
 
@@ -26,9 +26,9 @@ dayjs().locale('zh-cn').format() // use locale in a specific instance
 
 Vue.prototype.dayjs = dayjs;//可以全局使用dayjs
 
-// Vue.filter('date', (date) => {
-//   return format(new Date(date), 'yyyy-MM-dd')
-// })
+Vue.filter('date', (date) => {
+  return format(new Date(date), 'yyyy-MM-dd')
+})
 
 
 Vue.use(Buefy)

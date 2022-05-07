@@ -2,34 +2,34 @@
     <section id="author">
         <el-card class="" shadow="never">
             <div slot="header" class="has-text-centered">
-                <span class="has-text-weight-bold">👨关于作者</span>
+                <span class="has-text-weight-bold">👨 关于作者</span>
             </div>
             <div class="has-text-centered">
                 <p class="is-size-5 mb-5">
-                    <router-link :to="{ path: `/member/${user.username}/home` }">
-                        {{ user.alias }} <span class="is-size-7 has-text-grey">{{ '@' + user.username }}</span>
+                    <router-link :to="{ path: `/member/${userInfo.username}/home` }">
+                        {{ userInfo.alias }} <span class="is-size-7 has-text-grey">{{ '@' + userInfo.username }}</span>
                     </router-link>
                 </p>
                 <div class="columns is-mobile">
                     <div class="column is-half">
-                        <code>{{ user.topicCount }}</code>
+                        <code>{{ userInfo.topicCount }}</code>
                         <p>文章</p>
                     </div>
                     <div class="column is-half">
-                        <code>{{ user.followerCount }}</code>
+                        <code>{{ userInfo.followerCount }}</code>
                         <p>粉丝</p>
                     </div>
                 </div>
-                <div>
+                <div v-if="user.id !== userInfo.id">
                     <button
                         v-if="hasFollow"
                         class="button is-success button-center is-fullwidth"
-                        @click="handleUnFollow(user.id)"
+                        @click="handleUnFollow(userInfo.id)"
                     >
                         已关注
                     </button>
 
-                    <button v-else class="button is-link button-center is-fullwidth" @click="handleFollow(user.id)">
+                    <button v-else class="button is-link button-center is-fullwidth" @click="handleFollow(userInfo.id)">
                         关注
                     </button>
                 </div>
@@ -44,7 +44,7 @@ import { mapGetters } from 'vuex'
 export default {
     name: 'Author',
     props: {
-        user: {
+        userInfo: {
             type: Object,
             default: null
         }
@@ -59,31 +59,35 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'token'
+            'token','user'
         ])
     },
     methods: {
         fetchInfo() {
-            if(this.token != null && this.token !== '')
-            {
-                hasFollow(this.user.id).then(value => {
+            if(this.token != null && this.token !== '') {
+                console.log(this.userInfo);
+                hasFollow(this.userInfo.id).then(value => {
                     const { data } = value
                     this.hasFollow = data.hasFollow
                 })
             }
         },
         handleFollow: function(id) {
-            if(this.token != null && this.token !== '')
-            {
+            if(this.token != null && this.token !== '') {
                 follow(id).then(response => {
                     const { message } = response
                     this.$message.success(message)
                     this.hasFollow = !this.hasFollow
-                    this.user.followerCount = parseInt(this.user.followerCount) + 1
+                    this.userInfo.followerCount = parseInt(this.userInfo.followerCount) + 1
                 })
-            }
-            else{
-                this.$message.success('请先登录')
+            } else{
+                this.$buefy.toast.open({
+                    message: `请先登录！`,
+                    type: 'is-warning'
+                })
+                setTimeout(() => {
+                    this.$router.push({ path: this.redirect || '/login' })
+                }, 1000)
             }
         },
         handleUnFollow: function(id) {
@@ -91,7 +95,7 @@ export default {
                 const { message } = response
                 this.$message.success(message)
                 this.hasFollow = !this.hasFollow
-                this.user.followerCount = parseInt(this.user.followerCount) - 1
+                this.userInfo.followerCount = parseInt(this.userInfo.followerCount) - 1
             })
         }
     }

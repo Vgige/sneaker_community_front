@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { userRegister } from '@/api/auth/auth'
+import { userRegister } from '@/api/auth'
 export default {
     name: 'Register',
     data() {
@@ -117,9 +117,9 @@ export default {
                     userRegister(this.ruleForm).then((res) => {
                         if(res){
                             if (res.code === 200) {
-                                this.$message({
-                                    message: '账号注册成功',
-                                    type: 'success'
+                                this.$buefy.toast.open({
+                                    message: `账号注册成功！`,
+                                    type: 'is-success'
                                 })
                                 //
                                 setTimeout(() => {
@@ -128,7 +128,10 @@ export default {
                                 }, 0.2 * 1000)
                             } else {
                                 this.loading = false;
-                                this.$message.error('注册失败，' + res.message);
+                                this.$buefy.toast.open({
+                                    message: '注册失败，' + res.message ,
+                                    type: 'is-warning'
+                                })
                             }
                         }
                     }).catch(() => {
