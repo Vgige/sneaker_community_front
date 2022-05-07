@@ -64,32 +64,33 @@
             <lv-comments :slug="topic.id" />
         </div>
 
-<!--        <div class="column">-->
-<!--            &lt;!&ndash;作者&ndash;&gt;-->
-<!--            <Author-->
-<!--                v-if="flag"-->
-<!--                :user="topicUser"-->
-<!--            />-->
-<!--            &lt;!&ndash;推荐&ndash;&gt;-->
-<!--            <recommend-->
-<!--                v-if="flag"-->
-<!--                :topic-id="topic.id"-->
-<!--            />-->
-<!--        </div>-->
+        <div class="column">
+            <!--作者-->
+            <Author
+                v-if="flag"
+                :user="topicUser"
+            />
+            <!--推荐-->
+            <recommend
+                v-if="flag"
+                :topic-id="topic.id"
+            />
+        </div>
     </div>
 </template>
 
 <script>
 import { deleteTopic, getTopic } from '@/api/post'
 import { mapGetters } from 'vuex'
-// import Author from '@/views/post/Author'
-// import Recommend from '@/views/post/Recommend'
+import Author from '@/views/post/Author'
+import Recommend from '@/views/post/Recommend'
 // import LvComments from '@/components/Comment/Comments'
 import Vditor from 'vditor'
 import 'vditor/dist/index.css'
 export default {
     name: 'TopicDetail',
     // components: { Author, Recommend, LvComments },
+    components: { Author, Recommend },
     computed: {
         ...mapGetters([
             'token','user'

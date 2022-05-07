@@ -55,7 +55,7 @@ service.interceptors.response.use(
             } else { // 其他异常直接提示
                 Message({
                     showClose: true,
-                    message: '⚠' + res.message || 'Error',
+                    message: res.message || 'Error',
                     type: 'error',
                     duration: 3 * 1000
                 })
