@@ -10,7 +10,10 @@ const routes = [
   { path: '*', redirect: '/404', hidden: true},
   { path: "/post/create", name: "post-create", component: () => import("@/views/post/Create"), meta: { title: "信息发布", requireAuth: true}},
   { path: '/post/:id', name: 'post-detail', component: () => import('@/views/post/Detail'), meta: {title: '详情' }},
-  { path: '/topic/edit/:id', name: 'topic-edit', component: () => import('@/views/post/Edit'), meta: {title: '编辑', requireAuth: true}}
+  { path: '/topic/edit/:id', name: 'topic-edit', component: () => import('@/views/post/Edit'), meta: {title: '编辑', requireAuth: true}},
+  { path: '/tag/:name', name: 'tag', component: () => import('@/views/tag/Tag'), meta: { title: '主题列表' }},
+  { path: '/search', name: 'search', component: () => import('@/views/Search'), meta: { title: '检索' }},
+
 ]
 //重写路由跳转方法，增加异常捕捉 .catch((err) => err)
 const originalPush = VueRouter.prototype.push;

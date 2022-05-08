@@ -41,12 +41,12 @@
                                                 </router-link>
                                             </span>
 
-                                            <span class="is-hidden-mobile">浏览:{{ item.view }}</span>
+                                            <span class="is-hidden-mobile">浏览:{{ item.view }}&ensp;</span>
+                                            <span class="is-hidden-mobile">评论:{{ item.comments }}</span>
                                         </div>
                                     </div>
                                 </nav>
                             </div>
-                            <div class="media-right" />
                         </article>
                     </el-tab-pane>
                     <el-tab-pane label="热门主题" name="hot">
@@ -86,12 +86,12 @@
                                                   {{ "#" + tag.name }}
                                                 </router-link>
                                             </span>
-                                            <span class="is-hidden-mobile">浏览:{{ item.view }}</span>
+                                            <span class="is-hidden-mobile">浏览:{{ item.view }}&ensp;</span>
+                                            <span class="is-hidden-mobile">评论:{{ item.comments }}</span>
                                         </div>
                                     </div>
                                 </nav>
                             </div>
-                            <div class="media-right" />
                         </article>
                     </el-tab-pane>
                 </el-tabs>

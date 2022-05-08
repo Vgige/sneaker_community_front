@@ -1,7 +1,7 @@
 <template>
     <section class="box comments">
         <hr />
-        <h3 class="title is-5">留言区</h3>
+        <h3 class="title is-5">评论区</h3>
         <lv-comments-form :slug="slug" @loadComments="fetchComments"/>
 
         <lv-comments-item

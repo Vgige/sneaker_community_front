@@ -7,7 +7,7 @@
                         v-model.lazy="commentText"
                         type="textarea"
                         maxlength="400"
-                        placeholder="发表一下留言吧..."
+                        placeholder="发表一下评论吧..."
                         :disabled="isLoading"
                     ></b-input>
                 </b-field>
@@ -64,7 +64,7 @@ export default  {
            }else{
                if(!this.commentText || this.commentText.trim() == ''){
                    this.$buefy.toast.open({
-                       message: `留言不能为空哦！`,
+                       message: `评论不能为空哦！`,
                        type: 'is-warning'
                    })
                    return;
@@ -78,13 +78,13 @@ export default  {
                    await pushComment(postData);
                    this.$emit('loadComments', this.slug);
                    this.$buefy.toast.open({
-                       message: `留言成功！`,
+                       message: `评论成功！`,
                        type: 'is-success'
                    })
                    this.commentText = '';
                } catch (e) {
                    this.$buefy.toast.open({
-                       message: `发表留言请求异常 ${e}`,
+                       message: `发表评论请求异常 ${e}`,
                        type: 'is-danger'
                    })
                } finally {
