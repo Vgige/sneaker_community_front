@@ -8,6 +8,16 @@ export function userRegister(userDTO) {
         data: userDTO
     })
 }
+// 邮件发送
+export function sendEmile(email) {
+    return request({
+        url: '/ums/user/getEmailCode',
+        method: 'get',
+        params: {
+            email: email
+        }
+    })
+}
 // 前台用户登录
 export function login(user) {
     return request({

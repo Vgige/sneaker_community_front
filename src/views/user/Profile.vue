@@ -14,8 +14,18 @@
                             <el-avatar v-if="topicUser.avatar" :src="topicUser.avatar" :size="98"  title="点击上传头像" />
                         </el-upload>
                         <p class="is-size-5 mt-3 mb-3">
-                            {{ topicUser.alias }} <span class="is-size-7 has-text-grey">{{ '@' + topicUser.username }}</span>
+                            {{ topicUser.alias }} <span class="is-size-7 has-text-g`rey">{{ '@' + topicUser.username }}</span>
                         </p>
+                        <div class="columns is-mobile">
+                            <div class="column is-half">
+                                <code>{{ topicUser.topicCount }}</code>
+                                <p>文章</p>
+                            </div>
+                            <div class="column is-half">
+                                <code>{{ topicUser.followerCount }}</code>
+                                <p>粉丝</p>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <p class="content">积分：<code>{{ topicUser.score }}</code></p>
@@ -147,11 +157,12 @@ export default {
         },
         beforeAvatarUpload(file) {
             const isJPG = file.type === 'image/jpeg';
+            const isPNG = file.type === 'image/png';
             const isLt2M = file.size / 1024 / 1024 < 2;
 
-            if (!isJPG) {
+            if (!isJPG && !isPNG) {
                 this.$buefy.toast.open({
-                    message: `上传头像图片只能是 JPG 格式！`,
+                    message: `上传头像图片只能是 JPG/PNG 格式！`,
                     type: 'is-warning'
                 })
             }

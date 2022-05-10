@@ -39,6 +39,11 @@
                             <el-input v-model="ruleForm.email" autocomplete="off" />
                         </el-form-item>
 
+                        <el-form-item label="验证码" prop="code">
+                            <el-input class="mr-3" style="width: 25%" v-model="ruleForm.code" autocomplete="off" maxlength="6"/>
+                            <el-button type="" @click="sendEmail()">发送邮件</el-button>
+                        </el-form-item>
+
                         <el-form-item>
                             <el-button
                                 type="primary"
@@ -54,7 +59,7 @@
 </template>
 
 <script>
-import { userRegister } from '@/api/auth'
+import { userRegister , sendEmile } from '@/api/auth'
 export default {
     name: 'Register',
     data() {
@@ -72,8 +77,8 @@ export default {
             ruleForm: {
                 name: '',
                 pass: '',
-                checkPass: '',
-                email: ''
+                email: '',
+                code: '',
             },
             rules: {
                 name: [
@@ -105,6 +110,9 @@ export default {
                         message: '请输入正确的邮箱地址',
                         trigger: ['blur', 'change']
                     }
+                ],
+                code: [
+                    { required: true, message: '请输入验证码', trigger: 'blur' },
                 ]
             }
         }
@@ -130,7 +138,7 @@ export default {
                                 this.loading = false;
                                 this.$buefy.toast.open({
                                     message: '注册失败，' + res.message ,
-                                    type: 'is-warning'
+                                    type: 'is-danger'
                                 })
                             }
                         }
@@ -141,6 +149,30 @@ export default {
                     return false;
                 }
             })
+        },
+        sendEmail(){
+            if(!this.ruleForm.email || this.ruleForm.email ==''){
+                this.$buefy.toast.open({
+                    message: '请输入邮箱！' ,
+                    type: 'is-warning'
+                })
+            }else{
+                sendEmile(this.ruleForm.email).then((res) => {
+                    if(res){
+                        if (res.code === 200) {
+                            this.$buefy.toast.open({
+                                message: `邮件发送成功，请注意查收！`,
+                                type: 'is-success'
+                            })
+                        }else {
+                            this.$buefy.toast.open({
+                                message: '邮件发送失败，' + res.message ,
+                                type: 'is-danger'
+                            })
+                        }
+                    }
+                })
+            }
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();
