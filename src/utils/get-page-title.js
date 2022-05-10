@@ -1,4 +1,4 @@
-const title = '一个球鞋社区'
+const title = '一个论坛'
 
 export default function getPageTitle(pageTitle) {
     if (pageTitle) {

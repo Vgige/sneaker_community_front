@@ -57,14 +57,14 @@
                 >
                     <div class="buttons">
                         <b-button
-                            class="is-light"
+                            class="button is-primary "
                             tag="router-link"
                             :to="{ path: '/register' }"
                         >
                             注册
                         </b-button>
                         <b-button
-                            class="is-light"
+                            class="button is-success"
                             tag="router-link"
                             :to="{ path: '/login' }"
                         >

@@ -12,7 +12,7 @@
                     <article v-for="(item, index) in topics" :key="index" class="media mt-3">
                         <div class="media-left">
                             <figure class="image is-48x48">
-                                <img :src="`https://cn.gravatar.com/avatar/${item.userId}?s=164&d=monsterid`" style="border-radius: 5px;">
+                                <img :src="item.avatar" style="border-radius: 5px;">
                             </figure>
                         </div>
                         <div class="media-content">

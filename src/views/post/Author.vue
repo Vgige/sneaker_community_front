@@ -5,6 +5,7 @@
                 <span class="has-text-weight-bold">👨 关于作者</span>
             </div>
             <div class="has-text-centered">
+                <el-avatar v-if="userInfo.avatar" :src="userInfo.avatar" :size="98" />
                 <p class="is-size-5 mb-5">
                     <router-link :to="{ path: `/member/${userInfo.username}/home` }">
                         {{ userInfo.alias }} <span class="is-size-7 has-text-grey">{{ '@' + userInfo.username }}</span>
@@ -76,7 +77,10 @@ export default {
             if(this.token != null && this.token !== '') {
                 follow(id).then(response => {
                     const { message } = response
-                    this.$message.success(message)
+                    this.$buefy.toast.open({
+                        message: message,
+                        type: 'is-success'
+                    })
                     this.hasFollow = !this.hasFollow
                     this.userInfo.followerCount = parseInt(this.userInfo.followerCount) + 1
                 })
@@ -93,7 +97,10 @@ export default {
         handleUnFollow: function(id) {
             unFollow(id).then(response => {
                 const { message } = response
-                this.$message.success(message)
+                this.$buefy.toast.open({
+                    message: message,
+                    type: 'is-success'
+                })
                 this.hasFollow = !this.hasFollow
                 this.userInfo.followerCount = parseInt(this.userInfo.followerCount) - 1
             })

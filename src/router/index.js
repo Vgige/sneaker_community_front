@@ -13,6 +13,8 @@ const routes = [
   { path: '/topic/edit/:id', name: 'topic-edit', component: () => import('@/views/post/Edit'), meta: {title: '编辑', requireAuth: true}},
   { path: '/tag/:name', name: 'tag', component: () => import('@/views/tag/Tag'), meta: { title: '主题列表' }},
   { path: '/search', name: 'search', component: () => import('@/views/Search'), meta: { title: '检索' }},
+  { path: '/member/:username/home', name: 'user', component: () => import('@/views/user/Profile'), meta: { title: '用户主页' } },
+  { path: '/member/:username/setting', name: 'user-setting', component: () => import('@/views/user/Setting'), meta: { title: '设置', requireAuth: true }},
 
 ]
 //重写路由跳转方法，增加异常捕捉 .catch((err) => err)

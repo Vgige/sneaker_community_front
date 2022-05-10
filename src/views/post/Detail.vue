@@ -120,7 +120,6 @@ export default {
         async fetchTopic() {
             getTopic(this.$route.params.id).then(response => {
                 const { data } = response
-                document.title = data.topic.title
                 this.topic = data.topic
                 this.tags = data.tags
                 this.topicUser = data.user
